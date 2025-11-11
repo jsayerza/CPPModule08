@@ -11,7 +11,14 @@
 /* ************************************************************************** */
 
 #ifndef EASYFIND_HPP
-# include EASYFIND_HPP
+# define EASYFIND_HPP
 
+template <typename T>
+int easyfind(const T container, int value)
+{
+	(void)container;
+	std::cout << "value: " << value;
+	return (value);
+}
 
 #endif
