@@ -22,6 +22,26 @@ int main()
 	container.push_back(3);
 	container.push_back(4);
 	container.push_back(5);
-	easyfind(container, 3);
+	try {
+		easyfind(container, 3);
+		easyfind(container, 1);
+		easyfind(container, 5);
+	} catch (const std::exception& e) {
+		std::cout << "Excepció capturada: " << e.what() << std::endl;
+	}
+
+	try {
+		easyfind(container, 33);
+	} catch (const std::exception& e) {
+		std::cout << "Excepció capturada: " << e.what() << std::endl;
+	}
+
+	try {
+		easyfind(container, 2);
+		easyfind(container, 4);
+	} catch (const std::exception& e) {
+		std::cout << "Excepció capturada: " << e.what() << std::endl;
+	}
+
 	return (0);
 }

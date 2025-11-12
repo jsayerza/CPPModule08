@@ -13,12 +13,44 @@
 #ifndef EASYFIND_HPP
 # define EASYFIND_HPP
 
-template <typename T>
-int easyfind(const T container, int value)
+# include <algorithm>
+# include <iostream>
+# include <sstream>
+
+class NotFoundException : public std::exception
 {
-	(void)container;
-	std::cout << "value: " << value;
-	return (value);
-}
+	private:
+		std::string _msg;
+	public:
+		virtual ~NotFoundException() throw() {};
+
+		NotFoundException(int value)
+		{
+			std::ostringstream oss;
+			oss << "Valor " << value << " no trobat.";	
+			_msg = oss.str();
+		}
+		
+		virtual const char* what() const throw()
+		{
+			return (_msg.c_str());
+		}
+};
+
+template <typename T>
+typename T::iterator easyfind(T& container, int value)
+{
+	typename T::iterator it = std::find(container.begin(), container.end(), value);
+	if (it == container.end())
+	{
+		std::cout << "Valor " << value << " no trobat." << std::endl;
+		throw NotFoundException(value);
+	}
+	std::cout << "Valor " << value << " trobat." << std::endl;
+	return (it);
+};
 
 #endif
+
+
+//// Notes: El método what() de std::exception debe devolver const char* (no std::string)
