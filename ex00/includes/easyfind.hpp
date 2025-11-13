@@ -27,7 +27,7 @@ class NotFoundException : public std::exception
 		NotFoundException(int value)
 		{
 			std::ostringstream oss;
-			oss << "Valor " << value << " no trobat.";	
+			oss << "Value " << value << " not found.";	
 			_msg = oss.str();
 		}
 		
@@ -43,10 +43,10 @@ typename T::iterator easyfind(T& container, int value)
 	typename T::iterator it = std::find(container.begin(), container.end(), value);
 	if (it == container.end())
 	{
-		std::cout << "Valor " << value << " no trobat." << std::endl;
+		std::cout << "Value " << value << " not found." << std::endl;
 		throw NotFoundException(value);
 	}
-	std::cout << "Valor " << value << " trobat." << std::endl;
+	std::cout << "Value " << value << " found." << std::endl;
 	return (it);
 };
 
