@@ -1,4 +1,4 @@
-NAME = easyfind
+NAME = span
 
 # Compiler
 CXX = c++
@@ -9,11 +9,12 @@ DEBUG_FLAGS = -g -fsanitize=address -fsanitize=undefined
 
 INC_PATH =	./includes/
 INC =		-I $(INC_PATH)
-HEADERS =	$(INC_PATH)easyfind.hpp 
+HEADERS =	$(INC_PATH)Span.hpp \
 
 SRC_PATH =	./sources/
-SRC =		$(SRC_PATH)main.cpp 
-
+SRC =		$(SRC_PATH)main.cpp \
+			$(SRC_PATH)Span.cpp 
+			
 OBJ_PATH =	./objects/
 OBJ =		$(SRC:$(SRC_PATH)%.cpp=$(OBJ_PATH)%.o)
 
@@ -55,4 +56,4 @@ re: fclean all
 
 .PHONY: all clean fclean re debug
 
-# valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./easyfind
+# valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./span
