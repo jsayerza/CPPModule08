@@ -21,7 +21,7 @@ int randNumber()
 
 int main(void)
 {
-	{	
+	{
 		std::cout << "--- Test subject" << std::endl;
 		Span sp = Span(5);
 
@@ -35,7 +35,7 @@ int main(void)
 		std::cout << sp.longestSpan() << std::endl;	
 	}
 
-	{	
+	{
 		std::cout << "\n--- Test container full" << std::endl;
 		Span sp = Span(5);
 
@@ -52,7 +52,31 @@ int main(void)
 		}
 	}
 
-	{	
+	{
+		std::cout << "\n--- Test Not enough elements: 0 element, shortest span" << std::endl;
+		Span sp = Span(0);
+
+		try {
+			std::cout << sp.shortestSpan() << std::endl;
+			std::cout << sp.longestSpan() << std::endl;	
+		} catch (std::exception& e) {
+			std::cout << e.what() << std::endl;
+		}
+	}
+
+	{
+		std::cout << "\n--- Test Not enough elements: 1 element, longest span" << std::endl;
+		Span sp = Span(1);
+
+		try {
+			std::cout << sp.longestSpan() << std::endl;	
+			std::cout << sp.shortestSpan() << std::endl;
+		} catch (std::exception& e) {
+			std::cout << e.what() << std::endl;
+		}
+	}
+
+	{
 		std::cout << "\n--- Test addRange with array small size" << std::endl;
 		Span sp = Span(10);
 
@@ -64,7 +88,7 @@ int main(void)
 		std::cout << sp.longestSpan() << std::endl;	
 	}
 
-	{	
+	{
 		int maxNumbers = 100000;
 		std::cout << "\n--- Test addRange with array big size (" << maxNumbers << ")" << std::endl;
 		Span sp = Span(maxNumbers);

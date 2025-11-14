@@ -51,7 +51,7 @@ class Span
 			public:
 				virtual const char* what() const throw()
 				{
-					return("Not enough elements to calculate shortest span.");
+					return("Not enough elements to calculate shortest/longest span.");
 				};
 		};
 
