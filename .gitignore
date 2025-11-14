@@ -5,6 +5,7 @@
 *.pdf
 *.json
 easyfind
+span 
 
 # Prerequisites
 *.d

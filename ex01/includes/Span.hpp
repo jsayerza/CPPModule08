@@ -15,6 +15,7 @@
 
 # include <vector>
 # include <iostream>
+# include <algorithm>
 
 class Span
 {
@@ -43,6 +44,15 @@ class Span
 				{
 					return ("Container already full");
 				}
+		};
+
+		class NotEnoughElementsException : public std::exception
+		{
+			public:
+				virtual const char* what() const throw()
+				{
+					return("Not enough elements to calculate shortest span.");
+				};
 		};
 
 		template <typename Iterator>

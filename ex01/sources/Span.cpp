@@ -12,7 +12,7 @@
 
 #include "../includes/Span.hpp"
 
-Span::Span() : _maxSize(10000)
+Span::Span() : _maxSize(1)
 {}
 
 Span::Span(unsigned int maxSize) : _maxSize(maxSize)
@@ -45,12 +45,32 @@ void Span::addNumber(int number)
 
 int Span::shortestSpan() const
 {
-	return (0);
+	if (_container.size() < 2)
+		throw NotEnoughElementsException();
+	std::vector<int> auxContainer = _container;
+	std::sort(auxContainer.begin(), auxContainer.end());
+	int shortestSpanVal = auxContainer[1] - auxContainer[0];
+	for (long unsigned int i = 1; i < auxContainer.size(); i++)
+	{
+		if (auxContainer[i] - auxContainer[i-1] < shortestSpanVal)
+			shortestSpanVal = auxContainer[i] - auxContainer[i-1];
+	}
+
+	return (shortestSpanVal);
 }
 
 int Span::longestSpan() const
 {
-	return (0);
+	if (_container.size() < 2)
+		throw NotEnoughElementsException();
+	std::vector<int> auxContainer = _container;
+	std::sort(auxContainer.begin(), auxContainer.end());
+	int longestSpanVal = auxContainer[auxContainer.size() -1] - auxContainer[0];
+	std::cout	<< "Min.: " << auxContainer[0] 
+				<< " Max.: " << auxContainer[auxContainer.size() -1] 
+				<< std::endl;
+
+	return (longestSpanVal);
 }
 
 void Span::printSpan() const
