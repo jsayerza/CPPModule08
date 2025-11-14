@@ -15,7 +15,7 @@ class MutantStack : public std::stack<T, Container>
 		{
 			if (this != &other)
 				std::stack<T, Container>::operator=(other);
-			retun (*this);
+			return (*this);
 		};
 		~MutantStack() {}
 
@@ -34,26 +34,33 @@ class MutantStack : public std::stack<T, Container>
 		const_iterator end() const { return (this->c.end()); }
 		reverse_iterator rend() { return (this->c.rend()); }
 		const_reverse_iterator rend() const { return (this->c.rend()); }
-
-
 };
 
 #endif
 
-// 1 Hereda de std::stack<T, Container>
 // std::stack es un contenedor que NO tiene iteradores.
-// Crear MutantStack que herede de std::stack pero añada iteradores.
-// std::stack tiene un miembro protected llamado c (container) --> en aquest cas, std::deque<T>
+// Crear MutantStack que herede de std::stack y añada iteradores.
+
+// 1. template <typename T, typename Container = std::deque<T> >
+// class MutantStack : public std::stack<T, Container>
+// Hereda de std::stack<T, Container>
+// Es una clase template que acepta dos parámetros de tipo:
+// Acepta tipo T y opcionalmente un contenedor (default: deque<T>)
+// T: El tipo de dato que almacenaré (int, string, etc.)
+// std::stack tiene un miembro protected llamado c (container) --> en este caso, std::deque<T>
+//		std::deque<T> porque std::stack en la librería estándar también usa deque por defecto
 //		Como heredamos de stack, podemos acceder a c
 
-// 2 Define typedef para tipos de iteradores
+// 2. Define typedef para tipos de iteradores
 // typedef typename Container::iterator iterator;
 //		Sin typename, el compilador no sabe si Container::iterator es un tipo o una variable.
 //		typename es necesario porque Container es un template
 // Container::iterator es el tipo de iterador del contenedor interno
 // Ahora MutantStack<int>::iterator existe
 
-// 3 Implementa begin() y end() usando this->c
-// 4 Añade versiones const y reverse
+// 3. Implementa begin() y end() usando this->c
+// 4. Añade versiones const y reverse
 
-//
+// std::stack<T, Container>::operator=(other);
+//		Llama al operador de asignación (operator=) de la clase base std::stack<T, Container> pasándole other como argumento
+//		Cuando heredas de una clase y haces tu propio operator=, debes llamar explícitamente al operator= de la clase padre para copiar sus datos.
