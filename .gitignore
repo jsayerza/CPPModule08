@@ -6,6 +6,7 @@
 *.json
 easyfind
 span
+mutantstack
 
 # Prerequisites
 *.d
